@@ -7,15 +7,12 @@ plugins {
 }
 
 android {
-    namespace = "kompas.technical.test.rawgapp"
+    namespace = "kompas.technical.test.domain"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "kompas.technical.test.rawgapp"
         minSdk = 21
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
