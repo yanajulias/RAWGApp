@@ -17,3 +17,7 @@ dependencyResolutionManagement {
 rootProject.name = "RAWGApp"
 include(":app")
 include(":app:domain")
+include(":app:frameworks")
+include(":app:common")
+include(":app:features")
+include(":app:data_source")
