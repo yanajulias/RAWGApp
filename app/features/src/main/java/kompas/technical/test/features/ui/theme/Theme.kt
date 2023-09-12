@@ -1,4 +1,4 @@
-package kompas.technical.test.rawgapp.ui.theme
+package kompas.technical.test.features.ui.theme
 
 import android.app.Activity
 import android.os.Build
