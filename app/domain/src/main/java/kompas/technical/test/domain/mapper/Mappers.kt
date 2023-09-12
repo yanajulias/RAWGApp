@@ -4,10 +4,10 @@ import kompas.technical.test.domain.model.Developers
 import kompas.technical.test.domain.model.Game
 import kompas.technical.test.domain.model.GameDetail
 import kompas.technical.test.domain.model.Genre
-import kompas.technical.test.frameworks.http.model.DeveloperDto
-import kompas.technical.test.frameworks.http.model.GameDetailDto
-import kompas.technical.test.frameworks.http.model.GameDto
-import kompas.technical.test.frameworks.http.model.GenreDto
+import kompas.technical.test.frameworks.http.model.remote.DeveloperDto
+import kompas.technical.test.frameworks.http.model.remote.GameDetailDto
+import kompas.technical.test.frameworks.http.model.remote.GameDto
+import kompas.technical.test.frameworks.http.model.remote.GenreDto
 
 
 fun GameDto.ResultDto?.toGame() = Game(

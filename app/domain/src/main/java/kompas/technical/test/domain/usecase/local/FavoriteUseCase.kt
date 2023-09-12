@@ -1,6 +1,6 @@
 package kompas.technical.test.domain.usecase.local
 
-import kompas.technical.test.frameworks.http.model.GameDetailDto
+import kompas.technical.test.frameworks.http.model.remote.GameDetailDto
 import kotlinx.coroutines.flow.Flow
 
 interface FavoriteUseCase {
