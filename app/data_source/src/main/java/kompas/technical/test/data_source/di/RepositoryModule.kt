@@ -7,7 +7,7 @@ import dagger.hilt.components.SingletonComponent
 import kompas.technical.test.data_source.repository.GameRepository
 import kompas.technical.test.data_source.repository.GameRepositoryImpl
 import kompas.technical.test.frameworks.GameApiService
-import kompas.technical.test.frameworks.database.FavoriteDao
+import kompas.technical.test.frameworks.database.FavoritesDao
 import javax.inject.Singleton
 
 @Module
@@ -18,7 +18,7 @@ object RepositoryModule {
     @Singleton
     fun bindGameRepository(
         gameApiService: GameApiService,
-        favoriteDao: FavoriteDao
+        favoriteDao: FavoritesDao
     ): GameRepository {
         return GameRepositoryImpl(gameApiService, favoriteDao)
     }

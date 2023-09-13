@@ -19,7 +19,7 @@ object DatabaseModule {
         return Room.databaseBuilder(
             application,
             AppDatabase::class.java,
-            name = "db_favorites"
+            name = "database_favorites"
         )
             .build()
     }
