@@ -1,6 +1,7 @@
 package kompas.technical.test.features.home
 
 import androidx.compose.foundation.lazy.LazyListScope
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
@@ -25,7 +26,7 @@ fun LazyListScope.gameListWithoutPagination(
 
 fun LazyListScope.gameListWithPagination(
     listWithPagination: LazyPagingItems<Game>,
-    navController: NavController
+    navController: NavController,
 ) {
     items(listWithPagination.itemCount) { i: Int ->
         listWithPagination[i]?.let {
@@ -34,6 +35,7 @@ fun LazyListScope.gameListWithPagination(
                 navController = navController
             )
         }
+
     }
 
     item {
@@ -41,6 +43,7 @@ fun LazyListScope.gameListWithPagination(
             is LoadState.Loading -> {
                 (0..10).forEach { _ ->
                     CardItemShimmer()
+                    CircularProgressIndicator()
                 }
             }
 
