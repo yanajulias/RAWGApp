@@ -56,7 +56,7 @@ fun GameDetailsHeader(
             )
 
             Text(
-                modifier = modifier.padding(horizontal = 12.dp, vertical = 4.dp),
+                modifier = modifier.padding(horizontal = 14.dp, vertical = 2.dp),
                 text = "Release Date : ${gameDetails.released}",
                 style = MaterialTheme.typography.bodyLarge.copy(
                     color = MaterialTheme.colorScheme.onTertiaryContainer,
@@ -73,6 +73,6 @@ fun GameDetailsHeader(
 @Composable
 fun GameDetailsHeaderPreview() {
     RAWGAppTheme {
-        //GameDetailsHeader()
+
     }
 }

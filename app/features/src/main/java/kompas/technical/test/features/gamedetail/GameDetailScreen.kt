@@ -22,6 +22,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -100,6 +102,38 @@ fun GameDetailScreen(
             ) {
                 if (gameDetails != null) {
                     GameDetailsHeader(gameDetails = gameDetails)
+                }
+
+                gameDetails?.genre?.joinToString(", ") { it.name }?.let {
+                    Text(
+                        modifier = modifier.padding(
+                            horizontal = 14.dp, vertical = 2.dp
+                        ),
+
+                        text = "Genre: $it",
+                        style = MaterialTheme.typography.bodyLarge.copy(
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.primary
+                        ),
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
+
+                gameDetails?.developers?.joinToString(", ") { it.name }?.let {
+                    Text(
+                        modifier = modifier.padding(
+                            horizontal = 14.dp, vertical = 2.dp
+                        ),
+
+                        text = "Developer: $it",
+                        style = MaterialTheme.typography.bodyLarge.copy(
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.primary
+                        ),
+                        maxLines = 10,
+                        overflow = TextOverflow.Ellipsis
+                    )
                 }
 
                 GameDetailsSection(title = "Description")
