@@ -63,8 +63,14 @@ fun SearchScreen(
             ) {
                 Text(
                     text = "No results found!",
-                    style = MaterialTheme.typography.titleSmall,
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.padding(top = 16.dp),
+                    style = MaterialTheme.typography.titleSmall.copy(
+                        color = MaterialTheme.colorScheme.secondary.copy(
+                            alpha = 0.8f
+                        ),
+                        fontWeight = FontWeight.Bold
+                    )
                 )
             }
         }
