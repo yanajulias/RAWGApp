@@ -4,13 +4,12 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import kompas.technical.test.frameworks.database.converters.Converter
-import kompas.technical.test.frameworks.http.model.remote.GameDetailDto
+import kompas.technical.test.frameworks.http.model.local.FavoriteEntity
 
 @TypeConverters(
     Converter::class
 )
-@Database(entities = [GameDetailDto::class], exportSchema = false, version = 3)
+@Database(entities = [FavoriteEntity::class], exportSchema = false, version = 1)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun favoritesDao(): FavoriteDao
-
+    abstract fun favoritesDao(): FavoritesDao
 }

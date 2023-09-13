@@ -1,12 +1,7 @@
 package kompas.technical.test.frameworks.http.model.remote
 
-import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
 
-@Entity(
-    tableName = "favorites_table",
-    primaryKeys = ["id"],
-)
 data class GameDetailDto(
     @SerializedName("background_image")
     val backgroundImage: String? = null,
