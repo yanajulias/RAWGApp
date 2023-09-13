@@ -28,7 +28,7 @@ import androidx.navigation.compose.rememberNavController
 import kompas.technical.test.domain.mapper.toGameFavorites
 import kompas.technical.test.features.R
 import kompas.technical.test.features.components.BottomBarNavigation
-import kompas.technical.test.features.components.CardFavoriteItem
+import kompas.technical.test.features.components.CardItem
 import kompas.technical.test.features.components.CustomTopBar
 import kompas.technical.test.features.ui.theme.RAWGAppTheme
 
@@ -90,9 +90,9 @@ fun FavoriteScreen(
                         .fillMaxSize()
                 ) {
                     items(viewModel.state.value.favorites.size) {
-                        CardFavoriteItem(
+                        CardItem(
                             navController = navController,
-                            gameDetail = viewModel.state.value.favorites[it].toGameFavorites()
+                            gameList = viewModel.state.value.favorites[it].toGameFavorites()
                         )
                     }
                 }
