@@ -54,7 +54,6 @@ fun GameDetailsTopBar(
                 )
             }
         },
-//        actions = { FavoriteButton(isFavorite = isFavoriteState) },
         actions = {
             if (isFavoriteState) {
                 Button(

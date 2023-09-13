@@ -56,60 +56,61 @@ fun GameDetailScreen(
         }
     } else {
         val gameDetails = remember { viewModel.state.value.gameDetails }
-        val favoriteGame = remember { viewModel.state.value.gameDetailDto }
+        val favoriteEntity = remember { viewModel.state.value.favoriteEntity }
 
-        if (gameDetails == null) {
-            Text(text = "No details found")
-        } else {
-            Scaffold(
-                snackbarHost = { SnackbarHost(snackbarHostState) },
-                topBar = {
-                    GameDetailsTopBar(
-                        navController = navController,
-                        isFavorite = viewModel.state.value.isFavorite,
-                        onChangeFavorite = { value ->
-                            if (value) {
-                                if (favoriteGame != null) {
-                                    viewModel.addToFavorite(favoriteGame)
-                                }
-                                scope.launch {
-                                    snackbarHostState.showSnackbar(
-                                        message = " Added to Favorites",
-                                        duration = SnackbarDuration.Short
-                                    )
-                                }
-                            } else {
-                                if (favoriteGame != null) {
-                                    viewModel.removeFromFavorite(gameDetailDto = favoriteGame)
-                                }
-                                scope.launch {
-                                    snackbarHostState.showSnackbar(
-                                        message = "Removed from Favorites",
-                                        duration = SnackbarDuration.Short
-                                    )
-                                }
+        Scaffold(
+            snackbarHost = { SnackbarHost(snackbarHostState) },
+            topBar = {
+                GameDetailsTopBar(
+                    navController = navController,
+                    isFavorite = viewModel.state.value.isFavorite,
+                    onChangeFavorite = { value ->
+                        if (value) {
+                            if (favoriteEntity != null) {
+                                viewModel.addToFavorite(favoriteEntity = favoriteEntity)
+                            }
+
+                            scope.launch {
+                                snackbarHostState.showSnackbar(
+                                    message = " Added to Favorites",
+                                    duration = SnackbarDuration.Short
+                                )
+                            }
+                        } else {
+                            if (favoriteEntity != null) {
+                                viewModel.removeFromFavorite(favoriteEntity = favoriteEntity)
+                            }
+                            scope.launch {
+                                snackbarHostState.showSnackbar(
+                                    message = "Removed from Favorites",
+                                    duration = SnackbarDuration.Short
+                                )
                             }
                         }
-                    )
-                },
-                containerColor = MaterialTheme.colorScheme.tertiaryContainer
-            ) { paddingValues ->
-                Column(
-                    modifier = modifier
-                        .padding(paddingValues)
-                        .fillMaxSize()
-                        .verticalScroll(scrollState)
-                ) {
+                    }
+                )
+            },
+            containerColor = MaterialTheme.colorScheme.tertiaryContainer
+        ) { paddingValues ->
+            Column(
+                modifier = modifier
+                    .padding(paddingValues)
+                    .fillMaxSize()
+                    .verticalScroll(scrollState)
+            ) {
+                if (gameDetails != null) {
                     GameDetailsHeader(gameDetails = gameDetails)
+                }
 
-                    GameDetailsSection(title = "Description")
+                GameDetailsSection(title = "Description")
 
-                    if (gameDetails.description.isEmpty()) {
-                        Text(
-                            modifier = modifier.padding(start = 16.dp, top = 8.dp, bottom = 12.dp),
-                            text = "No Description",
-                        )
-                    } else {
+                if (gameDetails?.description?.isEmpty() == true) {
+                    Text(
+                        modifier = modifier.padding(start = 16.dp, top = 8.dp, bottom = 12.dp),
+                        text = "No Description",
+                    )
+                } else {
+                    if (gameDetails != null) {
                         Text(
                             modifier = Modifier.padding(
                                 horizontal = 16.dp,
@@ -118,10 +119,10 @@ fun GameDetailScreen(
                             text = gameDetails.description,
                         )
                     }
-
-                    Spacer(modifier = modifier.height(28.dp))
                 }
+                Spacer(modifier = modifier.height(28.dp))
             }
         }
     }
+
 }
