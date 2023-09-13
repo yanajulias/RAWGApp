@@ -4,6 +4,7 @@ import kompas.technical.test.domain.model.Developers
 import kompas.technical.test.domain.model.Game
 import kompas.technical.test.domain.model.GameDetail
 import kompas.technical.test.domain.model.Genre
+import kompas.technical.test.frameworks.http.model.local.FavoriteEntity
 import kompas.technical.test.frameworks.http.model.remote.DeveloperDto
 import kompas.technical.test.frameworks.http.model.remote.GameDetailDto
 import kompas.technical.test.frameworks.http.model.remote.GameDto
@@ -42,14 +43,11 @@ fun DeveloperDto.toDeveloper() = Developers(
     name = this.name.orEmpty()
 )
 
-fun GameDetailDto.toGameFavorites() = GameDetail (
+fun FavoriteEntity.toGameFavorites() = Game(
     id = id,
     name = this.name.orEmpty(),
     backgroundImage = this.backgroundImage.orEmpty(),
-    description = this.descriptionRaw.orEmpty(),
-    developers = this.developers.orEmpty().map { it.toDeveloper() },
-    genre = this.genres.orEmpty().map { it.toGenre() },
+    genres = this.genres.orEmpty().map { it.toGenre() },
     released = this.released.orEmpty(),
 )
-
 

@@ -1,14 +1,14 @@
 package kompas.technical.test.domain.usecase.local
 
-import kompas.technical.test.frameworks.http.model.remote.GameDetailDto
+import kompas.technical.test.frameworks.http.model.local.FavoriteEntity
 import kotlinx.coroutines.flow.Flow
 
 interface FavoriteUseCase {
-    fun loadFavoriteList(): Flow<List<GameDetailDto>>
+    fun loadFavoriteList(): Flow<List<FavoriteEntity>>
 
-    fun addGameFavorites(gameDetailDto: GameDetailDto): Boolean
+    fun addGameFavorites(favoriteEntity: FavoriteEntity): Boolean
 
-    fun removeGameFavorites(gameDetailDto: GameDetailDto): Boolean
+    fun removeGameFavorites(favoriteEntity: FavoriteEntity): Boolean
 
     fun isFavorite(gameId: Int): Boolean
 }
