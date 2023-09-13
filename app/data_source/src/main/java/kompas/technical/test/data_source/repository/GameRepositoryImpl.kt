@@ -7,7 +7,8 @@ import kompas.technical.test.data_source.paging.BasePagingSource
 import kompas.technical.test.domain.model.Game
 import kompas.technical.test.domain.model.GameQuery
 import kompas.technical.test.frameworks.GameApiService
-import kompas.technical.test.frameworks.database.FavoriteDao
+import kompas.technical.test.frameworks.database.FavoritesDao
+import kompas.technical.test.frameworks.http.model.local.FavoriteEntity
 import kompas.technical.test.frameworks.http.model.remote.GameDetailDto
 import kompas.technical.test.frameworks.http.model.remote.GameDto
 import kotlinx.coroutines.flow.Flow
@@ -15,7 +16,7 @@ import javax.inject.Inject
 
 class GameRepositoryImpl @Inject constructor(
     private val gameApiService: GameApiService,
-    private val favoriteDao: FavoriteDao
+    private val favoriteDao: FavoritesDao
 ) : GameRepository {
     override suspend fun getSearchGameList(gameQuery: GameQuery): GameDto =
         gameApiService.getGameList(
@@ -47,15 +48,15 @@ class GameRepositoryImpl @Inject constructor(
     override suspend fun getGameDetails(gameId: Int): GameDetailDto =
         gameApiService.getGameDetail(gameId)
 
-    override fun loadGameFavoritesList(): Flow<List<GameDetailDto>> = favoriteDao.getFavoriteList()
+    override fun loadGameFavoritesList(): Flow<List<FavoriteEntity>> = favoriteDao.getFavoriteList()
 
-    override fun addGameFavorites(gameDetailDto: GameDetailDto): Boolean {
-        val effected = favoriteDao.addToFavoriteList(gameDetailDto)
+    override fun addGameFavorites(favoriteEntity: FavoriteEntity): Boolean {
+        val effected = favoriteDao.addToFavoriteList(favoriteEntity)
         return effected > 0
     }
 
-    override fun removeGameFavorites(gameDetailDto: GameDetailDto): Boolean {
-        val effected = favoriteDao.removeFavoriteList(gameDetailDto.id)
+    override fun removeGameFavorites(favoriteEntity: FavoriteEntity): Boolean {
+        val effected = favoriteDao.removeFavoriteList(favoriteEntity.id)
         return effected > 0
     }
 
