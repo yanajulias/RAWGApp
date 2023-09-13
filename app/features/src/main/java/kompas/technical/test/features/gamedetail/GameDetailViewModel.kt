@@ -9,7 +9,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kompas.technical.test.common.DataResult
 import kompas.technical.test.domain.usecase.local.FavoriteUseCase
 import kompas.technical.test.domain.usecase.remote.GameDetailUseCase
-import kompas.technical.test.frameworks.http.model.remote.GameDetailDto
+import kompas.technical.test.frameworks.http.model.local.FavoriteEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -23,10 +23,6 @@ class GameDetailsViewModel @Inject constructor(
 
     private val _state: MutableState<GameDetailsState> = mutableStateOf(GameDetailsState())
     val state: State<GameDetailsState> = _state
-
-//    private val _favoriteState: MutableState<FavoriteEntity> =
-//        mutableStateOf(FavoriteEntity)
-//    val favoriteState: State<GameDetailsFavoriteState> = _favoriteState
 
     fun getGameDetails(gameId: Int) {
         viewModelScope.launch {
@@ -54,6 +50,8 @@ class GameDetailsViewModel @Inject constructor(
                         is DataResult.Loading -> {
                             _state.value = _state.value.copy(isLoading = true)
                         }
+
+                        else -> {}
                     }
                 }
 
@@ -74,16 +72,16 @@ class GameDetailsViewModel @Inject constructor(
         }
     }
 
-    fun addToFavorite(gameDetailDto: GameDetailDto) {
+    fun addToFavorite(favoriteEntity: FavoriteEntity) {
         viewModelScope.launch(Dispatchers.IO) {
-            favoriteUseCase.addGameFavorites(gameDetailDto)
+            favoriteUseCase.addGameFavorites(favoriteEntity)
             _state.value = _state.value.copy(isFavorite = true)
         }
     }
 
-    fun removeFromFavorite(gameDetailDto: GameDetailDto) {
+    fun removeFromFavorite(favoriteEntity: FavoriteEntity) {
         viewModelScope.launch(Dispatchers.IO) {
-            favoriteUseCase.removeGameFavorites(gameDetailDto)
+            favoriteUseCase.removeGameFavorites(favoriteEntity)
             _state.value = _state.value.copy(isFavorite = true)
         }
     }
